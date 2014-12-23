@@ -1,11 +1,15 @@
 package jeujava;
 
-public class Item {
+public class Item extends CellContent{
 	
 	
 	private String name;
 	private String color;
 	private Individual owner;
+	
+	public String getRaw(){
+		return ".";
+	}
 	
 	public String getName(){
 		

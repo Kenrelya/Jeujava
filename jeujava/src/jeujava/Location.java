@@ -1,6 +1,6 @@
 package jeujava;
 
-public class Location extends Cell{
+public class Location{
 	
 	private int x;
 	private int y;

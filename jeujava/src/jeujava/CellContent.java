@@ -1,6 +1,6 @@
 package jeujava;
 
-public class CellContent extends Cell{
+public abstract class CellContent{
 	
 	private Boolean isDropable;
 	private Boolean isObstacle;
@@ -8,6 +8,8 @@ public class CellContent extends Cell{
 	private Boolean isExit;
 	private Boolean isEntrance;
 
+	public abstract String getRaw();
+	
 	
 	public Boolean getIsDropable(){
 		
@@ -58,4 +60,5 @@ public class CellContent extends Cell{
 		
 		this.isEntrance = isEntrance;
 	}
+
 }

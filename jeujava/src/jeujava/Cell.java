@@ -1,9 +1,14 @@
 package jeujava;
 
-public class Cell extends Map{
+public class Cell{
 	
 	private Location position;
 	private CellContent content;
+	
+	public Cell(CellContent content){
+		
+		this.content = content;
+	}
 	
 	public Location getPosition(){
 		
@@ -24,5 +29,7 @@ public class Cell extends Map{
 		
 		this.content = content;
 	}
+	
+	
 
 }
