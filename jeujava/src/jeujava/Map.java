@@ -82,7 +82,9 @@ public class Map {
 				else {
 					cell[i][j] = new Cell(new Floor());
 				}
+				
 				cell[6][9] = new Cell(new River(true));
+				cell[7][10] = new Cell(new Dropable(true));
 				
 			}
 		}
