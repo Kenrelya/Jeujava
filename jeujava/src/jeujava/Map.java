@@ -82,6 +82,8 @@ public class Map {
 				else {
 					cell[i][j] = new Cell(new Floor());
 				}
+				cell[6][9] = new Cell(new River(true));
+				
 			}
 		}
 	}
@@ -98,5 +100,6 @@ public class Map {
 		
 		
 	}
+	
 	
 }
