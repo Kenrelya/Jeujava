@@ -7,17 +7,19 @@ public class Individual {
 	public Individual(String name) {
 		//super();
 		this.name = name;
+		
+		
 	}
 
-	private Map map;
-	private String name;
-	private int hp;
-	private int hpMax;
-	private int level;
-	private ArrayList <Item> bag;
-	private int attack;
-	private int defense;
-	private int life;
+	protected Map map;
+	protected String name;
+	protected int hp;
+	protected int hpMax;
+	protected int level;
+	protected ArrayList <Item> bag;
+	protected int attack;
+	protected int defense;
+	protected int life;
 	
 	
 	public String getName() {
@@ -103,33 +105,20 @@ public class Individual {
 		
 	}
 	
-	public void walk(Cell cell){
+	public void attack(Individual ind){
 		
+		ind.hp -= (this.attack - ind.defense);
 	}
 	
-	public void interact(CellContent content){
-		
-		if (content.getIsDropable() == true){
-			if (content instanceof Item){ //On s'assure que content est bien un item 
-				bag.add((Item)content); // cast safe
-			}
-		}
-		
-		if (content.getIsExit() == true){
-			map.UpLevel();
-			map.createMap();
-		}
-		
-		if (content.getIsTrap() == true){
-			System.out.println("It's a trap !"); // a changer en fenetre plus tard
-		}
-		
-		if (content.getIsObstacle() == true){
-			System.out.println("I can't walk through this");//fenetre plus tard
-		}
-		
-		
+	public void defense(){
+		this.defense = defense+5;
 	}
+	
+	public void resetHP(){
+		this.hp = this.hpMax;
+	}
+	
+	
 	
 	
 	

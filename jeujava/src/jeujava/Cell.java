@@ -2,7 +2,6 @@ package jeujava;
 
 public class Cell{
 	
-		
 	private Location position;
 	private CellContent content;
 	

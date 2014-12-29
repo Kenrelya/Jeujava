@@ -14,7 +14,7 @@ public class Wall extends Obstacle{
 			return "|";
 		}
 		
-		return "¯";
+		return "Â¯";
 	}
 	
 
