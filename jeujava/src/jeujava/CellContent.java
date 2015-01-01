@@ -7,6 +7,7 @@ public abstract class CellContent{
 	private Boolean isTrap;
 	private Boolean isExit;
 	private Boolean isEntrance;
+        private Boolean isPlayable;
 
 	public abstract String getRaw();
 	

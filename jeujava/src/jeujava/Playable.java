@@ -9,11 +9,21 @@ public class Playable extends Individual{
 	public Playable(String name) {
 		super(name);
 		this.name = name;
+                this.setLevel(1);
+		this.setLife(5);
 	}
-	
-	public void flee(){
-		
+        
+        @Override
+	public String getRaw() {
+		return "p";
 	}
+        public void respawn(){
+            if(hp <= 0){
+                map.initMap(this);
+                map.showMap();
+                this.life--;
+            }
+        }
 	public void interact(CellContent content){
 		
 		if (content.getIsDropable() == true){
@@ -24,7 +34,7 @@ public class Playable extends Individual{
 		
 		if (content.getIsExit() == true){
 			map.UpLevel();
-			map.createMap();
+			map.showMap();
 		}
 		
 		if (content.getIsTrap() == true){

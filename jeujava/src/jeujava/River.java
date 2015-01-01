@@ -9,7 +9,7 @@ public class River extends Obstacle {
 	}
 	public String getRaw() {
 		if (isRiver == true){
-			return "r";
+			return "R";
 		}
 		return " ";
 	}

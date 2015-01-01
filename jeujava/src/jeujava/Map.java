@@ -6,7 +6,7 @@ public class Map {
 	
 	private int width;
 	private int height;
-	private Cell cell[][];
+	protected Cell cell[][];
 	private int difficulty;
 	public int level;
 	
@@ -70,8 +70,10 @@ public class Map {
 		this.level++;
 	}
 	
-	public void initMap(){
-		for(int j = 0; j<height; j++){
+	public void initMap(Playable player){
+		Random rand = new Random();
+                
+                for(int j = 0; j<height; j++){
 			for(int i = 0; i<width; i++){
 				if(i == 0 || i == width-1){
 					cell[i][j] = new Cell(new Wall(true));
@@ -80,17 +82,28 @@ public class Map {
 					cell[i][j] = new Cell(new Wall(false));
 				}
 				else {
-					cell[i][j] = new Cell(new Floor());
+                                   int choice = rand.nextInt(1000);
+                                   
+                                    if (choice<970) {
+                                        cell[i][j] = new Cell(new Floor());
+                                    }
+                                    else if(choice<980&&choice>=975){
+                                        cell[i][j] = new Cell(new Item(true));
+                                    }
+                                    else if(choice >=980&&choice<995){
+                                        cell[i][j] = new Cell(new River(true));
+                                    }
+                                    else 
+                                        cell[i][j] = new Cell(new Enemy("Monster"));
 				}
-				
-				cell[6][9] = new Cell(new River(true));
-				cell[7][10] = new Cell(new Dropable(true));
-				
 			}
 		}
+                
+                cell[95][27] = new Cell(new Exit(true));
+                cell[3][3] = new Cell(player);
 	}
 	
-	public void createMap(){
+	public void showMap(){
 
 		for(int i = 0; i<height; i++){
 			for(int j = 0; j<width; j++){
@@ -102,6 +115,5 @@ public class Map {
 		
 		
 	}
-	
 	
 }

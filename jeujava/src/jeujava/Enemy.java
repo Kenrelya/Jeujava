@@ -5,6 +5,10 @@ public class Enemy extends Individual{
 
 	public Enemy(String name) {
 		super(name);
+                this.setHp(100);
+                this.setHpMax(100);
+		this.setAttack(10);
+		this.setDefense(10);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -20,5 +24,9 @@ public class Enemy extends Individual{
 			System.out.println(this.name+ " defends himself");
 		}
 		
+	}
+        
+        public String getRaw() {
+		return "M";
 	}
 }

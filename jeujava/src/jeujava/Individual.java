@@ -2,16 +2,21 @@ package jeujava;
 
 import java.util.*;
 
-public class Individual {
+public class Individual extends CellContent{
 	
 	public Individual(String name) {
 		//super();
 		this.name = name;
+                this.bag = new ArrayList();
+                
 		
 		
 	}
-
-	protected Map map;
+        @Override
+    public String getRaw() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+	protected Map map = new Map();
 	protected String name;
 	protected int hp;
 	protected int hpMax;
@@ -94,20 +99,12 @@ public class Individual {
 		this.bag = bag;
 	}
 	
-	
-	public void respawn(Location position){
-		
-		if (hp == 0){
-			position.setX(5);
-			position.setY(5);
-			hp = hpMax; 
-		}
-		
-	}
-	
 	public void attack(Individual ind){
 		
+            if(this.attack>ind.defense)
 		ind.hp -= (this.attack - ind.defense);
+            else
+                ind.hp -= 3;
 	}
 	
 	public void defense(){
@@ -134,6 +131,8 @@ public class Individual {
 		
 		
 	}
+
+    
 	
 	
 }

@@ -7,7 +7,7 @@ public class Dropable extends CellContent {
 	Dropable(boolean isDropable){
 		this.isDropable = isDropable;
 	}
-	
+	@Override
 	public String getRaw() {
 		if(isDropable == true){
 		return "d";
