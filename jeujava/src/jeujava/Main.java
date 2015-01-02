@@ -29,23 +29,22 @@ public class Main {
                     System.out.println("Health : " +player.getHp()+ "/" +player.getHpMax());
                     System.out.println("Life : " +player.getLife());
                     String str = sc.next();
-                    switch(str){ // METTRE LES ENTREES POUR LE DEPLACEMENT
-                        case "i":
-                            showInventory(player);
-                            break;
-                        case "z" :
-                            player.goUp();
-                            break;
-                        case "d" :
-                            player.goRight();
-                            break;
-                        case "s" :
-                            player.goDown();
-                            break;
-                        case "q" : 
-                            player.goLeft();
-                            break;
-                    }    
+                    if(str.equals("i")){
+                        showInventory(player);
+                    }
+                    else if(str.equals("z")){
+                        player.goUp();
+                    }
+                    else if(str.equals("d")){
+                        player.goRight();
+                    }
+                    else if(str.equals("s")){
+                        player.goDown();
+                    }
+                    else if(str.equals("q")){
+                        player.goLeft();
+                    }
+                     
                 }
 		//combat(map, player, enemy);
 	}
