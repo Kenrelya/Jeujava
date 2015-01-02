@@ -62,17 +62,16 @@ public class Main {
 
             System.out.println("Choose your name character");
             String nameCharacter = sc.next();
-            switch (str) {
-                case "warrior":
-                    player = new Warrior(nameCharacter);
-                    break;
-                case "mage":
-                    player = new Mage(nameCharacter);
-                    break;
-                default:
-                    player = new Hunter(nameCharacter);
-                    break;
+            
+            if(str.equals("warrior")){
+                player = new Warrior(nameCharacter);
             }
+            else if(str.equals("mage")){
+                player = new Mage(nameCharacter);
+            }
+            else 
+                player = new Hunter(nameCharacter);
+            
 
             player.setMap(map);
             player.resetHP();
