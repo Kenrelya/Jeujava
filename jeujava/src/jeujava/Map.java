@@ -84,11 +84,14 @@ public class Map {
 				else {
                                    int choice = rand.nextInt(1000);
                                    
-                                    if (choice<970) {
+                                    if(i == player.getLocation().getX() && j == player.getLocation().getY()){
+                                        cell[i][j] = new Cell(player);
+                                    }
+                                    else if (choice<970) {
                                         cell[i][j] = new Cell(new Floor());
                                     }
                                     else if(choice<980&&choice>=975){
-                                        cell[i][j] = new Cell(new Item(true));
+                                        cell[i][j] = new Cell(new Potion());
                                     }
                                     else if(choice >=980&&choice<995){
                                         cell[i][j] = new Cell(new River(true));
@@ -100,7 +103,7 @@ public class Map {
 		}
                 
                 cell[95][27] = new Cell(new Exit(true));
-                cell[3][3] = new Cell(player);
+                
 	}
 	
 	public void showMap(){
@@ -115,5 +118,49 @@ public class Map {
 		
 		
 	}
+        /*
+        public Cell goRight(Playable player){
+            
+            int i = player.position.getXPlus1();
+            int j = player.position.getY();
+            
+            return cell[i][j] = new Cell(player);
+            
+           
+        }
+        
+        public Cell goUp(Playable player){
+            
+            int i = player.position.getX();
+            int j = player.position.getYPlus1();
+            
+            return cell[i][j] = new Cell(player);
+            
+           
+        }
+        
+        public Cell goLeft(Playable player){
+            
+            int i = player.position.getXMoins1();
+            int j = player.position.getY();
+            
+            return cell[i][j] = new Cell(player);
+            
+           
+        }
+        
+        public Cell goDown(Playable player){
+            
+            int i = player.position.getX();
+            int j = player.position.getYMoins1();
+            try{
+            return cell[i][j] = new Cell(player);
+            } catch(ArrayIndexOutOfBoundsException e){
+                System.out.println("Vous ne pouvez traversez les murs");
+            }
+            return cell[i][j] = new Cell(player);
+           
+        }
+        */
 	
 }

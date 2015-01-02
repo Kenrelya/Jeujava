@@ -17,6 +17,7 @@ public class Individual extends CellContent{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 	protected Map map = new Map();
+        Location position;
 	protected String name;
 	protected int hp;
 	protected int hpMax;
@@ -115,7 +116,9 @@ public class Individual extends CellContent{
 		this.hp = this.hpMax;
 	}
 	
-	
+	public Location getLocation(){
+            return this.position;
+        }
 	
 	
 	

@@ -14,58 +14,75 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		Map map = new Map();
-		Playable player = createCharacter();
-		Enemy enemy = new Enemy("Monster");
+		Playable player = createCharacter(map);
+                player.getBag().add(new Potion());
 		Scanner sc = new Scanner(System.in);
 		sc.nextLine();
 		
-		map.initMap(player); //CRÉER UNE BOUCLE POUR RAFRAICHIR LA MAP A CHAQUE MOUVEMENT
+		map.initMap(player); 
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\t\t\t\t QUEST OF "+player.getName()+"™\n\n\n\n\n\n");
-		map.showMap();
-		System.out.println("Health : " +player.getHp()+ "/" +player.getHpMax());
-		System.out.println("Life : " +player.getLife());
-		
-		combat(player, enemy);
+		while(true){ //BOUCLE QUI RAFRAICHIS LA MAP
+                    
+                    sc.nextLine();
+                    map.showMap();
+                    System.out.println("Health : " +player.getHp()+ "/" +player.getHpMax());
+                    System.out.println("Life : " +player.getLife());
+                    String str = sc.next();
+                    switch(str){ // METTRE LES ENTREES POUR LE DEPLACEMENT
+                        case "i":
+                            showInventory(player);
+                            break;
+                        case "z" :
+                            player.goUp();
+                            break;
+                        case "d" :
+                            player.goRight();
+                            break;
+                        case "s" :
+                            player.goDown();
+                            break;
+                        case "q" : 
+                            player.goLeft();
+                            break;
+                    }    
+                }
+		//combat(map, player, enemy);
 	}
 	
-	public static Playable createCharacter(){
+	public static Playable createCharacter(Map map){
 		
-		Scanner sc = new Scanner (System.in);
-		Playable player;
-		int hp;
-		String str;
-		do {
-				System.out.println("Choose your hero between Warrior, Mage and Hunter : (type warrior mage or hunter)");
-				str = sc.next();
-		}while(!str.equals("warrior") && !str.equals("mage") && !str.equals("hunter"));
-		
-		System.out.println("Choose your name character");
-		String nameCharacter = sc.next();
-		if (str.equals("warrior"))
-		{
-			player = new Warrior(nameCharacter);
-			
-		}
-		
-		else if  (str.equals("mage"))
-		{
-			 player = new Mage(nameCharacter);
-		}
-		
-		else 
-		{
-			 player = new Hunter(nameCharacter);
-		}
-		
-		 
-		 player.resetHP();
-		 
-		 System.out.println("Hello " +str+ " " +nameCharacter+" your quest is about to begin, press enter to continue" );
-		 return player;
+            Scanner sc = new Scanner (System.in);
+            Playable player;
+            int hp;
+            String str;
+            do {
+                            System.out.println("Choose your hero between Warrior, Mage and Hunter : (type warrior mage or hunter)");
+                            str = sc.next();
+            }while(!str.equals("warrior") && !str.equals("mage") && !str.equals("hunter"));
+
+            System.out.println("Choose your name character");
+            String nameCharacter = sc.next();
+            switch (str) {
+                case "warrior":
+                    player = new Warrior(nameCharacter);
+                    break;
+                case "mage":
+                    player = new Mage(nameCharacter);
+                    break;
+                default:
+                    player = new Hunter(nameCharacter);
+                    break;
+            }
+
+            player.setMap(map);
+            player.resetHP();
+
+            System.out.println("Hello " +str+ " " +nameCharacter+" your quest is about to begin, press enter to continue" );
+            return player;
 	}
 
-	public static void combat(Playable player, Enemy enemy){
+	public static void combat(Map map, Playable player, Enemy enemy){
 		String str;
 		
 		System.out.println("A fight is about to begin");
@@ -77,15 +94,16 @@ public class Main {
 				str = sc.next();
 			}while(!str.equals("attack") && !str.equals("defense") && !str.equals("flee"));
 		
-			if(str.equals("attack")){
-				player.attack(enemy);
-                                System.out.println("HP "+enemy.name+" "+enemy.getHp()+" /"+enemy.getHpMax());
-                            }
-			
-			else if(str.equals("defense")){
-				player.defense();
-				System.out.println("You defend youself");
-			}
+                    switch (str) {
+                        case "attack":
+                            player.attack(enemy);
+                            System.out.println("HP "+enemy.name+" "+enemy.getHp()+" /"+enemy.getHpMax());
+                            break;
+                        case "defense":
+                            player.defense();
+                            System.out.println("You defend youself");
+                            break;
+                    }
 			//clear
 			if (enemy.hp >0){
 				enemy.action(player);
@@ -94,6 +112,7 @@ public class Main {
 		
 		if(enemy.hp <= 0){
 			System.out.println("The fight is over, you win");
+                        map.showMap();
                         
 		}
 		
@@ -105,12 +124,23 @@ public class Main {
 		
 		else 
 			System.out.println("Run coward");
+                        map.showMap();
+                        
                         
                                 
 		
 	}
         
-        public static void showInventory(){
+        public static void showInventory(Playable player){
+            
+            Scanner sc = new Scanner(System.in);
+            
+            for(Item elem: player.getBag()){
+              System.out.println (elem.getName());
+            }
+        }
+        
+        public static void goUp(Playable player){
             
         }
 }

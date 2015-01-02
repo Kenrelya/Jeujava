@@ -1,15 +1,13 @@
 package jeujava;
 
-public class Item extends Dropable{
+public abstract class Item extends Dropable{
 	
 	
-	private String name;
+	protected String name;
 	private String color;
 	private Individual owner;
 
-    public Item(boolean isDropable) {
-        super(isDropable);
-    }
+  
 	
 	public String getRaw(){
 		return "i";
