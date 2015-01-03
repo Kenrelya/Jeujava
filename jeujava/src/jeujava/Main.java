@@ -21,7 +21,7 @@ public class Main {
 		
 		map.initMap(player); 
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-		System.out.println("\t\t\t\t QUEST OF "+player.getName()+"â„¢\n\n\n\n\n\n");
+		System.out.println("\t\t\t\t QUEST OF "+player.getName()+"™\n\n\n\n\n\n");
 		while(true){ //BOUCLE QUI RAFRAICHIS LA MAP
                     
                     sc.nextLine();
@@ -29,23 +29,22 @@ public class Main {
                     System.out.println("Health : " +player.getHp()+ "/" +player.getHpMax());
                     System.out.println("Life : " +player.getLife());
                     String str = sc.next();
-                    switch(str){ // METTRE LES ENTREES POUR LE DEPLACEMENT
-                        case "i":
-                            showInventory(player);
-                            break;
-                        case "z" :
-                            player.goUp();
-                            break;
-                        case "d" :
-                            player.goRight();
-                            break;
-                        case "s" :
-                            player.goDown();
-                            break;
-                        case "q" : 
-                            player.goLeft();
-                            break;
-                    }    
+                    if(str.equals("i")){
+                        showInventory(player);
+                    }
+                    else if(str.equals("z")){
+                        player.goUp();
+                    }
+                    else if(str.equals("d")){
+                        player.goRight();
+                    }
+                    else if(str.equals("s")){
+                        player.goDown();
+                    }
+                    else if(str.equals("q")){
+                        player.goLeft();
+                    }
+                     
                 }
 		//combat(map, player, enemy);
 	}
@@ -63,17 +62,16 @@ public class Main {
 
             System.out.println("Choose your name character");
             String nameCharacter = sc.next();
-            switch (str) {
-                case "warrior":
-                    player = new Warrior(nameCharacter);
-                    break;
-                case "mage":
-                    player = new Mage(nameCharacter);
-                    break;
-                default:
-                    player = new Hunter(nameCharacter);
-                    break;
+            
+            if(str.equals("warrior")){
+                player = new Warrior(nameCharacter);
             }
+            else if(str.equals("mage")){
+                player = new Mage(nameCharacter);
+            }
+            else 
+                player = new Hunter(nameCharacter);
+            
 
             player.setMap(map);
             player.resetHP();

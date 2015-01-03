@@ -139,5 +139,3 @@ public class Individual extends CellContent{
 	
 	
 }
-
- 
