@@ -6,17 +6,16 @@ package jeujava;
  */
 public class Exit extends CellContent{
     
-    boolean isExit;
+    @Override
+    public String getRaw() {
+            return "E";
+    }
     
-    Exit(boolean isExit){
-		this.isExit = isExit;
-	}
-	
-	public String getRaw() {
-		if(isExit == true){
-		return "E";
-		}
-		return " ";
-	}
+    @Override
+    public void interact(Playable player){
+        player.getMap().UpLevel();
+        player.getMap().initMap(player);
+        player.getMap().showMap();
+    }
     
 }

@@ -12,6 +12,7 @@ public class Enemy extends Individual{
 		// TODO Auto-generated constructor stub
 	}
 
+        @Override
 	public void action(Playable player){
 		Random rand = new Random();
 		int choice = rand.nextInt(10);
@@ -26,7 +27,8 @@ public class Enemy extends Individual{
 		
 	}
         
+        @Override
         public String getRaw() {
-		return "M";
+            return Printer.getStringColored("M", Color.RED);
 	}
 }

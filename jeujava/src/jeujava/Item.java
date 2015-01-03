@@ -10,7 +10,7 @@ public abstract class Item extends Dropable{
   
 	
 	public String getRaw(){
-		return "i";
+            return Printer.getStringColored("I", Color.PURPLE);
 	}
 	
 	public String getName(){

@@ -72,37 +72,39 @@ public class Map {
 	
 	public void initMap(Playable player){
 		Random rand = new Random();
+                player.getLocation().setX(3);
+                player.getLocation().setY(3);
                 
                 for(int j = 0; j<height; j++){
 			for(int i = 0; i<width; i++){
 				if(i == 0 || i == width-1){
-					cell[i][j] = new Cell(new Wall(true));
+                                        this.addCell(i, j, new Cell(new Wall(true)));
 				}
 				else if(j == 0 || j == height-1){
-					cell[i][j] = new Cell(new Wall(false));
+                                        this.addCell(i, j, new Cell(new Wall(false)));
 				}
 				else {
                                    int choice = rand.nextInt(1000);
                                    
                                     if(i == player.getLocation().getX() && j == player.getLocation().getY()){
-                                        cell[i][j] = new Cell(player);
+                                        this.addCell(i, j, new Cell(player));
                                     }
-                                    else if (choice<970) {
-                                        cell[i][j] = new Cell(new Floor());
+                                    else if (choice<600) {
+                                        this.addCell(i, j, new Cell(new Floor()));
                                     }
-                                    else if(choice<980&&choice>=975){
-                                        cell[i][j] = new Cell(new Potion());
+                                    else if(choice<850&&choice>=800){
+                                        this.addCell(i, j, new Cell(new Potion()));
                                     }
-                                    else if(choice >=980&&choice<995){
-                                        cell[i][j] = new Cell(new River(true));
+                                    else if(choice >=600&&choice<800){
+                                        this.addCell(i, j, new Cell(new River()));
                                     }
                                     else 
-                                        cell[i][j] = new Cell(new Enemy("Monster"));
+                                        this.addCell(i, j, new Cell(new Enemy("Monster")));
 				}
 			}
 		}
                 
-                cell[95][27] = new Cell(new Exit(true));
+                cell[95][27] = new Cell(new Exit());
                 
 	}
 	
@@ -118,49 +120,10 @@ public class Map {
 		
 		
 	}
-        /*
-        public Cell goRight(Playable player){
-            
-            int i = player.position.getXPlus1();
-            int j = player.position.getY();
-            
-            return cell[i][j] = new Cell(player);
-            
-           
-        }
         
-        public Cell goUp(Playable player){
-            
-            int i = player.position.getX();
-            int j = player.position.getYPlus1();
-            
-            return cell[i][j] = new Cell(player);
-            
-           
+        private void addCell(int x, int y, Cell cell){
+            this.cell[x][y] = cell;
+            cell.setPosition(new Location(x, y));
         }
-        
-        public Cell goLeft(Playable player){
-            
-            int i = player.position.getXMoins1();
-            int j = player.position.getY();
-            
-            return cell[i][j] = new Cell(player);
-            
-           
-        }
-        
-        public Cell goDown(Playable player){
-            
-            int i = player.position.getX();
-            int j = player.position.getYMoins1();
-            try{
-            return cell[i][j] = new Cell(player);
-            } catch(ArrayIndexOutOfBoundsException e){
-                System.out.println("Vous ne pouvez traversez les murs");
-            }
-            return cell[i][j] = new Cell(player);
-           
-        }
-        */
 	
 }

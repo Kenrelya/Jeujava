@@ -6,8 +6,8 @@ public class Cell{
 	private CellContent content;
 	
 	public Cell(CellContent content){
-		
 		this.content = content;
+                this.content.setCell(this);
 	}
 	
 	public Location getPosition(){
