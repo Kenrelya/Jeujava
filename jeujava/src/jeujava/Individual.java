@@ -2,7 +2,7 @@ package jeujava;
 
 import java.util.*;
 
-public class Individual extends CellContent{
+public abstract class Individual extends CellContent{
 	
 	public Individual(String name) {
 		//super();
@@ -12,10 +12,19 @@ public class Individual extends CellContent{
 		
 		
 	}
+        
+    abstract public void action(Playable player);
+    
         @Override
     public String getRaw() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+    public void interact(Playable player){
+        Main.combat(player.getMap(), player, this);
+    }
+    
 	protected Map map = new Map();
         Location position;
 	protected String name;

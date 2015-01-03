@@ -1,16 +1,12 @@
 package jeujava;
 
-public class Dropable extends CellContent {
-
-	boolean isDropable;
+public abstract class Dropable extends CellContent {
 	
-	
-	@Override
-	public String getRaw() {
-		if(isDropable == true){
-		return "d";
-		}
-		return " ";
-	}
-
+        @Override
+        public void interact(Playable player){
+            if (this instanceof Item){ //On s'assure que content est bien un item 
+                    player.getBag().add((Item)this); // cast safe
+                    this.cell.setContent(new Floor());
+            }
+        }
 }

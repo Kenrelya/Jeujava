@@ -1,64 +1,37 @@
 package jeujava;
 
+import java.util.ArrayList;
+
 public abstract class CellContent{
 	
-	private Boolean isDropable;
-	private Boolean isObstacle;
-	private Boolean isTrap;
-	private Boolean isExit;
-	private Boolean isEntrance;
+        private ArrayList<Item> bag;
+        private Map map;
+        protected Cell cell;
+        
 
+        
 	public abstract String getRaw();
 	
-	
-	public Boolean getIsDropable(){
+        public abstract void interact(Playable player);/*{
 		
-		return this.isDropable;
-	}
-	
-	public void setIsDropable(Boolean isDropable){
 		
-		this.isDropable = isDropable;
-	}
-	
-	public Boolean getIsObstacle(){
+                else if (this.getIsTrap() == true){
+			System.out.println("It's a trap !"); 
+		}
 		
-		return this.isObstacle;
-	}
-	
-	public void setIsObstacle(Boolean isObstacle){
-		
-		this.isObstacle = isObstacle;
-	}
-	
-	public Boolean getIsTrap(){
-		
-		return this.isTrap;
-	}
-	
-	public void setIsTrap(Boolean isTrap){
-		
-		this.isTrap = isTrap;
-	}
-	
-	public Boolean getIsExit(){
-		
-		return this.isExit;
-	}
-	
-	public void setIsExit(Boolean isExit){
-		
-		this.isExit = isExit;
-	}
-	
-	public Boolean getIsEntrance(){
-		
-		return this.isEntrance;
-	}
-	
-	public void setIsEntrance(Boolean isEntrance){
-		
-		this.isEntrance = isEntrance;
-	}
-
+                else if (this.getIsObstacle() == true){
+			System.out.println("I can't walk through this");
+		}
+                
+                else
+                    System.out.println("nothing's here");
+	}*/
+        
+        public Cell getCell(){
+            return this.cell;
+        }
+        
+        public void setCell(Cell cell){
+            this.cell = cell;
+        }
 }

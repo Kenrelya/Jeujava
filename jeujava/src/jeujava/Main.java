@@ -15,20 +15,21 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		Map map = new Map();
 		Playable player = createCharacter(map);
-                player.getBag().add(new Potion());
+               // player.getBag().add(new Potion());
 		Scanner sc = new Scanner(System.in);
-		sc.nextLine();
 		
 		map.initMap(player); 
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\t\t\t\t QUEST OF "+player.getName()+"™\n\n\n\n\n\n");
 		while(true){ //BOUCLE QUI RAFRAICHIS LA MAP
                     
-                    sc.nextLine();
+                    
                     map.showMap();
                     System.out.println("Health : " +player.getHp()+ "/" +player.getHpMax());
                     System.out.println("Life : " +player.getLife());
+                    
                     String str = sc.next();
+                    
                     if(str.equals("i")){
                         showInventory(player);
                     }
@@ -44,9 +45,12 @@ public class Main {
                     else if(str.equals("q")){
                         player.goLeft();
                     }
+                    else if(str.equals("f")){
+                        
+                    }
                      
                 }
-		//combat(map, player, enemy);
+                
 	}
 	
 	public static Playable createCharacter(Map map){
@@ -80,7 +84,7 @@ public class Main {
             return player;
 	}
 
-	public static void combat(Map map, Playable player, Enemy enemy){
+	public static void combat(Map map, Playable player, Individual enemy){
 		String str;
 		
 		System.out.println("A fight is about to begin");
@@ -110,19 +114,18 @@ public class Main {
 		
 		if(enemy.hp <= 0){
 			System.out.println("The fight is over, you win");
-                        map.showMap();
+                        enemy.getCell().setContent(new Floor());
                         
 		}
 		
 		else if(player.hp <= 0){
-			System.out.println("You've lost this fight. You will respawn");
+			System.out.println("You've lost this fight. You will respawn in a new map");
                         player.respawn();
                         
 		}
 		
 		else 
 			System.out.println("Run coward");
-                        map.showMap();
                         
                         
                                 
@@ -138,7 +141,5 @@ public class Main {
             }
         }
         
-        public static void goUp(Playable player){
-            
-        }
+        
 }
